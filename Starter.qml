@@ -16,6 +16,7 @@ Rectangle {
             font.pixelSize: 25
             text: qsTr("Kdo začne?")
             color: "white"
+            anchors.horizontalCenter: parent.horizontalCenter
         }
 
        Button {

@@ -29,7 +29,7 @@ Rectangle {
                    onClicked: {
                        menu2.visible = false
                        starter.visible = true
-                       game.difficult = false;
+                       game.difficult = false
                        game.gameAgainstPC = true;
                    }
                }

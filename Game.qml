@@ -6,15 +6,12 @@ Rectangle {
     height: parent.height
     color: "#888888"
     property bool gameAgainstPC: false
-
-
-
+    property bool difficult: false
 
     Column {
         width: 320
         anchors.centerIn: parent
         spacing: 8
-
 
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
@@ -22,7 +19,7 @@ Rectangle {
             font.family: "monospace"
             font.bold: true
             font.pixelSize: 25
-            text: qsTr("Tic Tac Toe")
+            text: qsTr("Piškvorky")
             color: "white"
         }
 
@@ -31,11 +28,11 @@ Rectangle {
             font.family: "monospace"
             font.bold: true
             font.pixelSize: 16
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: parent.horizontalCenter            
+            color: "white";
+            text: defaultText;
             property string defaultText: qsTr(" Na rade je O")
             property string defaultColor: "white"
-            color: defaultColor;
-            text: defaultText;
         }
 
         Grid {
@@ -210,7 +207,7 @@ Rectangle {
 
         //pokud jde o hru proti pocitaci a zacina pocitac, zahraje rovnou prvni tah
         if (game.gameAgainstPC && game.pcStarts){
-            text.text = qsTr(" Na rade je X")
+            text.text = qsTr(" Na řade je X")
             element = gridRepeater.itemAt(getRandomInt(0, gameGrid.boardSize * gameGrid.boardSize));
             element.state = "O";
             gameGrid.turnsCounter++

@@ -7,14 +7,11 @@ Rectangle {
     signal clicked
     radius: 10
     width: parent.width
-
     height: 40
-
     color: ma.pressed ? "silver" : "#f2b179"
 
     Text {
         id: txt
-
         font.family: "monospace"
         font.bold: true
         font.pixelSize: 16
@@ -26,6 +23,5 @@ Rectangle {
         id: ma
         anchors.fill: parent
         onClicked: container.clicked()
-
     }
 }

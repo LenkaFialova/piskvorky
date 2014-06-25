@@ -38,8 +38,9 @@ Rectangle {
         anchors.fill: parent
         onClicked: {
             var tmp = 0;
+            //pole je prazdne a hra stale neskoncila
             if (cell.state === cell.parent.defaultText && gameGrid.finished == false){
-                // hra proti PC
+                //hra proti pocitaci
                 if (game.gameAgainstPC == true){
                     var element;
                     //prvni tah
@@ -50,56 +51,40 @@ Rectangle {
                         element = gridRepeater.itemAt(pcTurnRandom());
                         element.state = "X"
                         gameGrid.turnsCounter++
+
                     }
                     //dalsi tahy
                     else {
-                        //hru zacal pocitac
-                        if (game.pcStarts){
-                            cell.state = "X";
-                            gameGrid.turnsCounter++
-                            tmp = gameGrid.checkForWin();
-                            if (tmp === 0) {
-                                //tah pocitace dle obtiznosti
-                                if (game.difficult) element = gridRepeater.itemAt(pcTurnAdvanced());
-                                else element = gridRepeater.itemAt(pcTurnRandom());
-                                element.state = "O"
-                                gameGrid.turnsCounter++
-                                tmp = gameGrid.checkForWin();
-                            }
+
+                        if (game.pcStarts) cell.state = "X"
+                        else cell.state = "O"
+                        gameGrid.turnsCounter++;
+                        tmp = gameGrid.checkForWin();
+                        if (tmp == 0){
+                            element = gridRepeater.itemAt(pcTurnRandom())
                         }
-                        //hru zacal hrac
-                        else {
-                            cell.state = "O";
-                            gameGrid.turnsCounter++
-                            tmp = gameGrid.checkForWin();
-                            if (tmp === 0) {
-                                if (game.difficult) element = gridRepeater.itemAt(pcTurnAdvanced());
-                                else element = gridRepeater.itemAt(pcTurnRandom());
-                                element.state = "X"
-                                gameGrid.turnsCounter++
-                                tmp = gameGrid.checkForWin();
-                            }
-                        }
+                        if (game.pcStarts) element.state = "O"
+                        else element.state = "X"
+                        gameGrid.turnsCounter++;
+                        tmp = gameGrid.checkForWin();
                     }
                 }
                 // hra dvou hracu
                 else {
                     if (gameGrid.player === ""){
-                        text.text = " Na rade je " + "X";
+                        text.text = " Na řade je " + "X";
                         cell.state = "O";
                     }
                     else if (gameGrid.player == "O") {
-                        text.text = " Na rade je " + gameGrid.player;
+                        text.text = " Na řade je " + gameGrid.player;
                         cell.state = "X";
                     }
                     else{
-                        text.text = " Na rade je " + gameGrid.player;
+                        text.text = " Na řade je " + gameGrid.player;
                         cell.state = "O";
                     }
                     gameGrid.turnsCounter++
                     tmp = gameGrid.checkForWin()
-
-
                 }
                 if (tmp !== 0){
                     gameGrid.finished = true
@@ -111,7 +96,6 @@ Rectangle {
 
     //Pocitac hraje na nahodne vybranou prazdnou pozici
     function pcTurnRandom(){
-
         var element;
         var index = 0;
         var emptyCells = [];

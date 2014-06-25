@@ -16,7 +16,7 @@ Rectangle {
            font.family: "monospace"
            font.bold: true
            font.pixelSize: 25
-           text: qsTr("Tic Tac Toe")
+           text: qsTr("Piškvorky")
            color: "white"
        }
 
