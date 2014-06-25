@@ -31,7 +31,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter            
             color: "white";
             text: defaultText;
-            property string defaultText: qsTr(" Na rade je O")
+            property string defaultText: qsTr(" Na řade je O")
             property string defaultColor: "white"
         }
 

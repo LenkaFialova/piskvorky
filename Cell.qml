@@ -55,18 +55,33 @@ Rectangle {
                     }
                     //dalsi tahy
                     else {
-
-                        if (game.pcStarts) cell.state = "X"
-                        else cell.state = "O"
-                        gameGrid.turnsCounter++;
-                        tmp = gameGrid.checkForWin();
-                        if (tmp == 0){
-                            element = gridRepeater.itemAt(pcTurnRandom())
+                        //hru zacal pocitac
+                        if (game.pcStarts){
+                            cell.state = "X";
+                            gameGrid.turnsCounter++
+                            tmp = gameGrid.checkForWin();
+                            if (tmp === 0) {
+                                //tah pocitace dle obtiznosti
+                                if (game.difficult) element = gridRepeater.itemAt(pcTurnAdvanced());
+                                else element = gridRepeater.itemAt(pcTurnRandom());
+                                element.state = "O"
+                                gameGrid.turnsCounter++
+                                tmp = gameGrid.checkForWin();
+                            }
                         }
-                        if (game.pcStarts) element.state = "O"
-                        else element.state = "X"
-                        gameGrid.turnsCounter++;
-                        tmp = gameGrid.checkForWin();
+                        //hru zacal hrac
+                        else {
+                            cell.state = "O";
+                            gameGrid.turnsCounter++
+                            tmp = gameGrid.checkForWin();
+                            if (tmp === 0) {
+                                if (game.difficult) element = gridRepeater.itemAt(pcTurnAdvanced());
+                                else element = gridRepeater.itemAt(pcTurnRandom());
+                                element.state = "X"
+                                gameGrid.turnsCounter++
+                                tmp = gameGrid.checkForWin();
+                            }
+                        }
                     }
                 }
                 // hra dvou hracu
